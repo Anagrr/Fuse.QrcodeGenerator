@@ -1,0 +1,23 @@
+<App Model="MainView">
+    <ClientPanel>
+    
+        <DockPanel Padding="15">
+            <TextView Dock="Top" Value="{text}" CaretColor="White" TextColor="White">
+                <Rectangle Layer="Background" Margin="-5" StrokeColor="White" StrokeWidth="1" CornerRadius="5"/>
+            </TextView>
+
+            <Button Text="Generate" Alignment="Center" Dock="Top" Margin="10, 30" Clicked="{generate}"/>
+
+            <DockPanel Dock="Fill" Alignment="Center">
+                <Each Items="{rows}">      
+                    <StackPanel Dock="Top" Orientation="Horizontal" Height="5">
+                        <Each Items="{elements}">
+                            <Rectangle Color="{color}" Width="{width}" Height="{height}"/>
+                        </Each>
+                    </StackPanel>
+                </Each>  
+            </DockPanel>
+        </DockPanel>        
+
+    </ClientPanel>
+</App>
