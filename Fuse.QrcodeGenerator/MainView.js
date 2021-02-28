@@ -3,7 +3,7 @@ import QrCodeElement from './Generator/QrCodeElement';
 
 export default class MainView {
     constructor() {
-        this.text = "https://fuseopen.com/docs/scripting/debugging.html";
+        this.text = "https://fuseopen.com/docs/scripting/debugging.html https://fuseopen.com/docs/scripting/debugging.html https://fuseopen.com/docs/scripting/debugging.html";
         this.elements = [];
         this.gridSize = 0;
         this.gridCellsize = 0;
