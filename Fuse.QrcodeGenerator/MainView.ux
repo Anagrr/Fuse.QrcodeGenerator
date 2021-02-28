@@ -1,26 +1,18 @@
 <App Model="MainView">
     <ClientPanel>
     
-        <DockPanel Padding="15" Color="White">
-            <TextView Dock="Top" Value="{text}">
+        <StackPanel Padding="20" Color="White" ItemSpacing="30">
+
+            <QrCodeDisplay Dock="Top" Alignment="Center"/>
+            
+            <TextView Dock="Top" Value="{text}" TextColor="Blue">
                 <Rectangle Layer="Background" Margin="-5" StrokeColor="Black" StrokeWidth="1" CornerRadius="5"/>
             </TextView>
 
-            <Button Text="Generate"  Alignment="Center" Dock="Top" Margin="10, 30" Clicked="{generate}">
-                <Rectangle Layer="Background" Margin="-5" Color="Black" StrokeWidth="1" CornerRadius="5"/>
+            <Button Text="Click to Generate" Alignment="Center" Dock="Top" Clicked="{generate}" Height="35">
+                <Rectangle Layer="Background" Margin="-5" StrokeColor="Black" StrokeWidth="2" CornerRadius="5"/>
             </Button>
-
-            <DockPanel Dock="Fill" Alignment="Center" MinHeight="100" MinWidth="100" CachingMode="Always">
-                <Rectangle Layer="Background" Margin="-5" StrokeColor="Black" StrokeWidth="3"/>
-                <Grid RowCount="{gridSize}" ColumnCount="{gridSize}" Color="White"
-                        DefaultColumn="{gridCellsize}" DefaultRow="{gridCellsize}">
-                    <Each Items="{elements}">
-                        <Rectangle Color="{color}" Row="{row}" Column="{column}"/>
-                    </Each>
-                </Grid>
-            </DockPanel>                       
-
-        </DockPanel>        
+        </StackPanel>        
 
     </ClientPanel>
 </App>

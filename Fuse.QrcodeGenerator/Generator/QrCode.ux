@@ -1,0 +1,8 @@
+<Panel ux:Class="QrCodeDisplay" MinHeight="10" MinWidth="10" >
+    <Rectangle Layer="Background" Margin="-5" StrokeColor="Black" StrokeWidth="3" Color="White"/>
+    <Grid RowCount="{gridSize}" ColumnCount="{gridSize}" Color="White" DefaultRow="{gridCellsize}">
+        <Each Items="{elements}">
+            <Rectangle Color="Black" Row="{row}" Column="{column}" ColumnSpan="{span}"/>
+        </Each>
+    </Grid>
+</Panel>
