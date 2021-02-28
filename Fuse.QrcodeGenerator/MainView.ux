@@ -10,18 +10,16 @@
                 <Rectangle Layer="Background" Margin="-5" Color="Black" StrokeWidth="1" CornerRadius="5"/>
             </Button>
 
-            <Deferred>
-                <DockPanel Dock="Fill" Alignment="Center" MinHeight="100" MinWidth="100" CachingMode="Always">
-                    <Rectangle Layer="Background" Margin="-5" StrokeColor="Black" StrokeWidth="3"/>
-                    <Each Items="{rows}">      
-                        <StackPanel Dock="Top" Orientation="Horizontal" CachingMode="Always">
-                            <Each Items="{elements}">
-                                <Rectangle Color="{color}" Size="{size}"/>
-                            </Each>
-                        </StackPanel>
-                    </Each>  
-                </DockPanel>
-            </Deferred>
+            <DockPanel Dock="Fill" Alignment="Center" MinHeight="100" MinWidth="100" CachingMode="Always">
+                <Rectangle Layer="Background" Margin="-5" StrokeColor="Black" StrokeWidth="3"/>
+                <Grid RowCount="{gridSize}" ColumnCount="{gridSize}" Color="White"
+                        DefaultColumn="{gridCellsize}" DefaultRow="{gridCellsize}">
+                    <Each Items="{elements}">
+                        <Rectangle Color="{color}" Row="{row}" Column="{column}"/>
+                    </Each>
+                </Grid>
+            </DockPanel>                       
+
         </DockPanel>        
 
     </ClientPanel>

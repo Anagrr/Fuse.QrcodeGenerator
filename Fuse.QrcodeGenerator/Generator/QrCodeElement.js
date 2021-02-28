@@ -1,6 +1,7 @@
 export default class QrCodeElement {
     constructor(options) {
-        this.size = options.size;
         this.color = options.color;
+        this.row = options.row;
+        this.column = options.column;
     }
 }

@@ -1,53 +1,57 @@
 import QrCodeGenerator from './Generator/QrCodeGenerator';
 import QrCodeElement from './Generator/QrCodeElement';
-import QrCodeRow from './Generator/QrCodeRow';
 import Timer from "FuseJS/Timer";
 
 export default class MainView {
     constructor() {
-        this.text = "This module will create a QR Code and draw it on the screen.";
-        this.rows = [];
+        this.text = "https://fuseopen.com/docs/fuse/controls/grid.html";
+        this.elements = [];
+        this.gridSize = 0;
+        this.gridCellsize = 0;
     }
 
     generate() {
-        this.rows = []; // rows for drawing on the screen
+        this.elements = [];
         let codeGen = new QrCodeGenerator(); // init Generator
         let options = codeGen._htOption; // options
         let qrCode = codeGen.makeCode(this.text); // qrCode's elements (light and dark squares)
-        var nCount = qrCode.getModuleCount(); // amount of rows
-        var elementSize = Math.floor(300 / nCount);
-
-        let lines = [];
-        for (var row = 0; row < nCount; row++) {
-            let qrCodeRow = new QrCodeRow();
-            for (var col = 0; col < nCount; col++) {
-                qrCodeRow.addElement(new QrCodeElement({
-                    size: elementSize,
-                    color: qrCode.isDark(row, col) ? options.colorDark : options.colorLight
-                }));
+        this.gridSize = qrCode.getModuleCount(); // amount of rows
+        this.gridCellsize = Math.floor(300 / this.gridSize);
+        
+        let elements = [];
+        for (var row = 0; row < this.gridSize; row++) {
+            for (var col = 0; col < this.gridSize; col++) {
+                if (qrCode.isDark(row, col)) { // grid has white background so we draw only dark cells
+                    elements.push(new QrCodeElement({
+                        color: options.colorDark,
+                        column: col,
+                        row: row,
+                    }));
+                }
             }
-            lines.push(qrCodeRow);
         }
-
-        this.drawCode(lines);
+        if(elements.length < 900) {
+            this.elements = elements; // draw all elements by one step
+        } else {
+            this.drawCode(elements); // draw elements on-by-one to avoid screen's freezing
+        }
     }
 
-    drawCode(lines) {
+    drawCode(items) {
         var ind = 0;
         var timerId = Timer.create(() => {
-            if(ind >= lines.length)
-            {
+            if (ind >= items.length) {
                 Timer.delete(timerId);
                 return;
             }
 
-            this.drawQrCodeRow(lines[ind]);
+            this.drawItem(items[ind]);
             ind++;
 
-        }, this.text.length * 2, true);
+        }, 2, true);
     }
 
-    drawQrCodeRow(row) {
-        this.rows.push(row);
+    drawItem(el) {
+        this.elements.push(el);
     }
 }
