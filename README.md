@@ -1,7 +1,7 @@
 # Fuse.QrcodeGenerator
 Generate QR Code from Fuse App
 
-![Generated qr_code](2021-02-27_16-31-00.gif.gif)
+![Generated qr_code](2021-02-27_16-31-00.gif)
 
 # Usage
 Add this repos to your Fuse project
