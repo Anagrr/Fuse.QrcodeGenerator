@@ -1,17 +1,14 @@
-<App Model="MainView">
-    <ClientPanel>
-    
-        <StackPanel Padding="20" Color="White" ItemSpacing="30">
+<App>
+    <ClientPanel Model="MainView">
 
-            <QrCodeDisplay Dock="Top" Alignment="Center"/>
+        <StackPanel Padding="20" Color="White" ItemSpacing="30" Name="root">
+
+            <QrCodeRenderer Alignment="Center" Text="{text}"/>
             
-            <TextView Dock="Top" Value="{text}" TextColor="Blue">
+            <TextInput Value="{text}" TextColor="Blue" TextWrapping="Wrap" >
                 <Rectangle Layer="Background" Margin="-5" StrokeColor="Black" StrokeWidth="1" CornerRadius="5"/>
-            </TextView>
+            </TextInput>
 
-            <Button Text="Click to Generate" Alignment="Center" Dock="Top" Clicked="{generate}" Height="35">
-                <Rectangle Layer="Background" Margin="-5" StrokeColor="Black" StrokeWidth="2" CornerRadius="5"/>
-            </Button>
         </StackPanel>        
 
     </ClientPanel>

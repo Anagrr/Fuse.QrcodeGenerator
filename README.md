@@ -1,7 +1,7 @@
 # Fuse.QrcodeGenerator
 Generate QR Code from Fuse App
 
-![Generated qr_code](2021-02-27_16-31-00.gif)
+![Generated qr_code](example.png)
 
 # Usage
 Add this repos to your Fuse project
@@ -22,31 +22,12 @@ Update your project .uno file
     ]
   }
  ```
- update some path of internal libs
- ```javascript
- import QrCodeGenerator from './Generator/QrCodeGenerator';
- import QrCodeElement from './Generator/QrCodeElement';
- ```
- Now you can easily add the model insight your UX root code
+ To use QrCode genetaor just add the renderer with binding and place where you want to see a QR code
  ```ux
- <Panel ux:Class="example.hello" Model="MainView">
+ <QrCodeRenderer Alignment="Center" Text="{text}"/>
  ```
- And the last pice of cake, add this tag to generate QR Code inside the view
- ```ux
- <QrCodeDisplay Dock="Top" Alignment="Center"/>
- ```
- # Parameters
- The only required parameter is inside the Model file (MainView.js), you can customize it
- inside the MainView class contructor. Just change the content of variable this.text (as you want)
- ```javascript
- constructor() {
-        this.text = "https://fuseopen.com/docs/scripting/debugging.html https://fuseopen.com/docs/scripting/debugging.html https://fuseopen.com/docs/scripting/debugging.html";
-        this.elements = [];
-        this.gridSize = 0;
-        this.gridCellsize = 0;
-        this.isDark = true;
-    }
- ```
+ Binding should be in a parent. The size of the QR code will be calculated automatically.
+
  # Author
  Thank to [Serhii Bukrieiev](https://github.com/Anagrr/) for this awesome projet that save my life. 
  

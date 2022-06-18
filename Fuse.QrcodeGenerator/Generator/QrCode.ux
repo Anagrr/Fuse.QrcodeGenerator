@@ -1,8 +1,22 @@
-<Panel ux:Class="QrCodeDisplay" MinHeight="10" MinWidth="10" >
-    <Rectangle Layer="Background" Margin="-5" StrokeColor="Black" StrokeWidth="3" Color="White"/>
-    <Grid RowCount="{gridSize}" ColumnCount="{gridSize}" Color="White" DefaultRow="{gridCellsize}" DefaultColumn="{gridCellsize}">
-        <Each Items="{elements}">
-            <Rectangle Color="Black" Row="{row}" Column="{column}" ColumnSpan="{span}"/>
-        </Each>
-    </Grid>
-</Panel>
+<DockPanel ux:Class="QrCodeRenderer" MinHeight="10" MinWidth="10"
+            Model="/Generator/QrCodeRenderer"
+            ModelArgs="{window().size, (ReadProperty Text), (ReadProperty CellSize)}"
+            CellSize="3">
+    <string ux:Property="Text"/>
+    <int ux:Property="CellSize"/>
+
+    <Panel Dock="Fill" Alignment="Center">
+        <Rectangle Layer="Background" Margin="-5" StrokeColor="Black" StrokeWidth="3" Color="White"/>
+        <VectorLayer>
+            <Grid RowCount="{gridSize}" ColumnCount="{gridSize}" DefaultRow="{gridCellsize}" DefaultColumn="{gridCellsize}">
+                <Each Items="{elements}">
+                    <Rectangle Color="Black" Row="{row}" Column="{column}" ColumnSpan="{span}"/>
+                </Each>
+            </Grid>
+        </VectorLayer>
+    </Panel>
+
+    <Button Text="Click to Generate" Margin="25" Alignment="Center" Dock="Bottom" Height="35" Clicked="{render}">
+        <Rectangle Layer="Background" Margin="-5" StrokeColor="Black" StrokeWidth="2" CornerRadius="5"/>
+    </Button>
+</DockPanel>
